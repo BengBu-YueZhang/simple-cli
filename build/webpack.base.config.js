@@ -5,6 +5,7 @@ var config = require('../build-config')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var VueLoaderPlugin = require('vue-loader/lib/plugin')
 var StyleLintPlugin = require('stylelint-webpack-plugin')
+var path = require('path')
 
 switch (NODE_ENV) {
   case 'development':

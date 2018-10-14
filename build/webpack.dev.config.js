@@ -3,6 +3,7 @@ var merge = require('webpack-merge')
 var BaseConfig = require('./webpack.base.config')
 var config = require('../build-config')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var path = require('path')
 
 /**
  * 本地开发环境配置
@@ -25,8 +26,8 @@ module.exports = merge(BaseConfig, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, './dist/index.html'),
-      template: path.resolve(__dirname, './public/index.html')
+      filename: path.resolve(__dirname, './../dist/index.html'),
+      template: path.resolve(__dirname, './../public/index.html')
     })
   ]
 })

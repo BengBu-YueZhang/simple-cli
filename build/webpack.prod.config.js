@@ -7,6 +7,7 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 var BaseConfig = require('./webpack.base.config')
 var DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+var path = require('path')
 var webpack = require('webpack')
 
 module.exports = merge(BaseConfig, {
@@ -66,8 +67,8 @@ module.exports = merge(BaseConfig, {
       exclude: ['dll']
     }),
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, './dist/index.html'),
-      template: path.resolve(__dirname, './public/index.html')
+      filename: path.resolve(__dirname, './../dist/index.html'),
+      template: path.resolve(__dirname, './../public/index.html')
     }),
     new DllReferencePlugin({
       manifest: require('./dist/dll/vue.manifest.json'),
@@ -75,7 +76,7 @@ module.exports = merge(BaseConfig, {
     // 添加dll文件, 提升打包速度
     new AddAssetHtmlPlugin([
       {
-        filepath: path.resolve(__dirname, './dist/dll/*.dll.js'),
+        filepath: path.resolve(__dirname, './../dist/dll/*.dll.js'),
         includeSourcemap: false,
         publicPath: './dll',
         outputPath: '/dll'
