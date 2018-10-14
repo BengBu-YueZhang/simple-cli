@@ -19,13 +19,13 @@ switch (NODE_ENV) {
     break
 }
 
-var config = {
+module.exports = {
   target: 'web',
 
   mode: 'none',
 
   entry: {
-    main: path.resolve(__dirname, './src/main')
+    main: path.resolve(__dirname, './../src/main')
   },
 
   output: {
@@ -41,6 +41,55 @@ var config = {
     alias: {
       '@': path.resolve(__dirname, '../src')
     }
+  },
+
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'happypack/loader?id=js'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 1024,
+            name: './static/img/[name].[hash:7].[ext]'
+          }
+        }]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 1024,
+            name: './static/font/[name].[hash].[ext]'
+          }
+        }]
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: './static/media/[name].[hash:7].[ext]'
+        }
+      }
+    ]
   },
 
   plugins: [
@@ -66,87 +115,4 @@ var config = {
     new webpack.DefinePlugin({ ...config.vars }),
     new VueLoaderPlugin()
   ]
-}
-
-module.exports = (env, argv) => {
-
-  config.module.rules = [
-    {
-      enforce: 'pre',
-      test: /\.(js|vue)$/,
-      loader: 'eslint-loader',
-      exclude: /node_modules/
-    },
-    {
-      test: /\.vue$/,
-      loader: 'vue-loader'
-    },
-    {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: 'happypack/loader?id=js'
-    },
-    {
-      test: /\.css$/,
-      use: [
-        {
-          use: argv.mode === 'development' ? 'vue-style-loader' : MiniCssExtractPlugin.loader
-        },
-        {
-          use: 'css-loader'
-        },
-        {
-          use: 'postcss-loader'
-        }
-      ]
-    },
-    {
-      test: /\.less$/,
-      use: [
-        {
-          use: argv.mode === 'development' ? 'vue-style-loader' : MiniCssExtractPlugin.loader
-        },
-        {
-          use: 'css-loader'
-        },
-        {
-          use: 'postcss-loader'
-        },
-        {
-          use: 'less-loader'
-        }
-      ]
-    },
-    {
-      test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 1024,
-          name: './static/img/[name].[hash:7].[ext]'
-        }
-      }]
-    },
-    {
-      test: /\.(woff|woff2|eot|ttf|svg)$/,
-      exclude: /node_modules/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 1024,
-          name: './static/font/[name].[hash].[ext]'
-        }
-      }]
-    },
-    {
-      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-      loader: 'url-loader',
-      options: {
-        limit: 10000,
-        name: './static/media/[name].[hash:7].[ext]'
-      }
-    }
-  ]
-
-  return config
 }

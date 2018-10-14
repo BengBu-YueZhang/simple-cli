@@ -23,6 +23,42 @@ module.exports = merge(BaseConfig, {
     hot: true
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'vue-style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader'
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'vue-style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'less-loader'
+          }
+        ]
+      }
+    ]
+  },
+
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
