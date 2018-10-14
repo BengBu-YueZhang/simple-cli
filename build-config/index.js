@@ -13,8 +13,8 @@ module.exports = {
     outputPath: outputPath,
     publicPath: '/',
     proxy: {},
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    filename: './static/js/[name].js',
+    chunkFilename: './static/js/[name].chunk.js',
     vars: {
       'VUE_APP_API': 'development_api'
     }
@@ -26,8 +26,8 @@ module.exports = {
   test: {
     outputPath: outputPath,
     publicPath: '/',
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].chunk.js',
+    filename: './static/js/[name].[hash].js',
+    chunkFilename: './static/js/[name].[hash].chunk.js',
     vars: {
       'VUE_APP_API': 'test_api'
     }
@@ -35,13 +35,13 @@ module.exports = {
 
   /**
    * 生产环境配置
-   * chunkhash 长效缓存
+   * chunkhash 长效缓存, chunkhash根据文件内容生成的hash
    */
   production: {
     outputPath: outputPath,
     publicPath: '/',
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    filename: './static/js/[name].[chunkhash].js',
+    chunkFilename: './static/js/[name].[chunkhash].chunk.js',
     vars: {
       'VUE_APP_API': 'production_api'
     }

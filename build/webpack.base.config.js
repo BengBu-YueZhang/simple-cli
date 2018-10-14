@@ -122,7 +122,7 @@ module.exports = (env, argv) => {
         loader: 'url-loader',
         options: {
           limit: 1024,
-          name: 'img/[name].[hash:7].[ext]'
+          name: './static/img/[name].[hash:7].[ext]'
         }
       }]
     },
@@ -133,7 +133,7 @@ module.exports = (env, argv) => {
         loader: 'url-loader',
         options: {
           limit: 1024,
-          name: 'fonts/[name].[hash].[ext]'
+          name: './static/font/[name].[hash].[ext]'
         }
       }]
     },
@@ -142,7 +142,7 @@ module.exports = (env, argv) => {
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: 'media/[name].[hash:7].[ext]'
+        name: './static/media/[name].[hash:7].[ext]'
       }
     }
   ]
