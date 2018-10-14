@@ -8,6 +8,7 @@ var BaseConfig = require('./webpack.base.config')
 var DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var path = require('path')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = merge(BaseConfig, {
   mode: 'production',
@@ -117,7 +118,9 @@ module.exports = merge(BaseConfig, {
         outputPath: '/dll'
       }
     ]),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: './static/css/[contenthash].css'
+    }),
     new BundleAnalyzerPlugin()
   ]
 })
