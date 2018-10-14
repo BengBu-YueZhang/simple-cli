@@ -11,7 +11,7 @@ module.exports = {
     host: '0.0.0.0',
     port: 8080,
     outputPath: outputPath,
-    publicPath: '/',
+    publicPath: '',
     proxy: {},
     filename: './static/js/[name].js',
     chunkFilename: './static/js/[name].chunk.js',
@@ -25,7 +25,7 @@ module.exports = {
    */
   test: {
     outputPath: outputPath,
-    publicPath: '/',
+    publicPath: '',
     filename: './static/js/[name].[hash].js',
     chunkFilename: './static/js/[name].[hash].chunk.js',
     vars: {
@@ -39,7 +39,7 @@ module.exports = {
    */
   production: {
     outputPath: outputPath,
-    publicPath: '/',
+    publicPath: '',
     filename: './static/js/[name].[chunkhash].js',
     chunkFilename: './static/js/[name].[chunkhash].chunk.js',
     vars: {

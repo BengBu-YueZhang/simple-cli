@@ -2,7 +2,6 @@ var NODE_ENV = process.env.NODE_ENV
 var HappyPack = require('happypack')
 var webpack = require('webpack')
 var config = require('../build-config')
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var VueLoaderPlugin = require('vue-loader/lib/plugin')
 var StyleLintPlugin = require('stylelint-webpack-plugin')
 var path = require('path')
