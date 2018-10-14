@@ -16,7 +16,9 @@ module.exports = {
     filename: './static/js/[name].js',
     chunkFilename: './static/js/[name].chunk.js',
     vars: {
-      'VUE_APP_API': 'development_api'
+      'process.env': {
+        'VUE_APP_API': JSON.stringify('development')
+      }
     }
   },
 
@@ -29,7 +31,9 @@ module.exports = {
     filename: './static/js/[name].[hash].js',
     chunkFilename: './static/js/[name].[hash].chunk.js',
     vars: {
-      'VUE_APP_API': 'test_api'
+      'process.env': {
+        'VUE_APP_API': JSON.stringify('test')
+      }
     }
   },
 
@@ -43,7 +47,9 @@ module.exports = {
     filename: './static/js/[name].[chunkhash].js',
     chunkFilename: './static/js/[name].[chunkhash].chunk.js',
     vars: {
-      'VUE_APP_API': 'production_api'
+      'process.env': {
+        'VUE_APP_API': JSON.stringify('production')
+      }
     }
   }
 }

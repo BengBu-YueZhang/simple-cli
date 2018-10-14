@@ -15,6 +15,10 @@ export default {
 
   components: {
     HelloWorld
+  },
+
+  created () {
+    console.log(process.env.NODE_ENV)
   }
 }
 </script>
