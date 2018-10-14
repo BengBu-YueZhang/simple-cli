@@ -3,10 +3,13 @@ var DllPlugin = require('webpack/lib/DllPlugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
+  mode: 'production',
+
   entry: {
     // vue全家桶生成动态链接库
     "vue": ['vue', 'vuex', 'vue-router']
   },
+
   output: {
     // 动态链接库的名称
     filename: '[name].dll.js',
@@ -14,6 +17,7 @@ module.exports = {
     // 动态链接库全局变量的名称
     library: '_dll_[name]'
   },
+
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new DllPlugin({
