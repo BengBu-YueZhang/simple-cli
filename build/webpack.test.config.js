@@ -34,29 +34,29 @@ module.exports = merge(BaseConfig, {
         },
         canPrint: true
       })
-    ]
-  },
+    ],
 
-  splitChunks: {
-    cacheGroups: {
-      default: false,
-      vendors: false,
-      // 第三方模块
-      vendor: {
-        name: 'vendors-chunk',
-        chunks: 'all',
-        test: /[\\/]node_modules[\\/]/,
-        priority: 20  
-      },
-      // 公共的模块
-      common: {
-        name: 'common-chunk',
-        chunks: 'all',
-        minChunks: 2,
-        test: path.resolve(__dirname, './src/components'),
-        priority: 10,
-        enforce: true,
-        reuseExistingChunk: true
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        vendors: false,
+        // 第三方模块
+        vendor: {
+          name: 'vendors-chunk',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
+          priority: 20  
+        },
+        // 公共的模块
+        common: {
+          name: 'common-chunk',
+          chunks: 'all',
+          minChunks: 2,
+          test: path.resolve(__dirname, './../src/components'),
+          priority: 10,
+          enforce: true,
+          reuseExistingChunk: true
+        }
       }
     }
   },
