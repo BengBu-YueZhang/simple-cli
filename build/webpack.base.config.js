@@ -4,6 +4,7 @@ var webpack = require('webpack')
 var config = require('../build-config')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var VueLoaderPlugin = require('vue-loader/lib/plugin')
+var StyleLintPlugin = require('stylelint-webpack-plugin')
 
 switch (NODE_ENV) {
   case 'development':
@@ -42,6 +43,9 @@ var config = {
   },
 
   plugins: [
+    new StyleLintPlugin({
+      files: ['**/*.{vue,htm,html,css,sss,less,scss,sass}'],
+    }),
     new HappyPack({
       id: 'js',
       threads: 4,
@@ -66,6 +70,12 @@ var config = {
 module.exports = (env, argv) => {
 
   config.module.rules = [
+    {
+      enforce: 'pre',
+      test: /\.(js|vue)$/,
+      loader: 'eslint-loader',
+      exclude: /node_modules/
+    },
     {
       test: /\.vue$/,
       loader: 'vue-loader'
